@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>Política de Privacidade — InoovaWeb Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/legal/_style.css" />
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><img src="/assets/iw-icon.png" alt="InoovaWeb" /><span>InoovaWeb — Hub de Canais</span></div>
+  <h1>Política de Privacidade</h1>
+  <div class="updated">Vigência: 8 de setembro de 2026 · agencia.inoovaweb.com.br</div>
+
+  <h2>1. Quem somos</h2>
+  <p>Esta política descreve como a <strong>InoovaWeb</strong> ("nós") trata dados pessoais no
+  <strong>InoovaWeb Hub</strong> ("hub", "plataforma"), disponível em <code>https://agencia.inoovaweb.com.br</code>.
+  O hub é uma ferramenta interna de integração que conecta canais da Meta (WhatsApp Business,
+  Messenger e Instagram), recebe os eventos (webhooks) desses canais e os encaminha para os
+  sistemas configurados pelo administrador.</p>
+  <p>Para efeito da Lei Geral de Proteção de Dados (LGPD, Lei nº 13.709/2018), a InoovaWeb atua
+  como <strong>operadora</strong> em nome de seus clientes (controladores) e como
+  <strong>controladora</strong> quanto aos dados de acesso ao painel.</p>
+
+  <h2>2. Dados que tratamos</h2>
+  <ul>
+    <li><strong>Conteúdo dos webhooks da Meta</strong> — mensagens, comentários, identificadores
+    de remetente/conta, números de telefone comerciais, IDs de página/conta e metadados enviados
+    pela Meta quando um canal está conectado. Esses dados só chegam ao hub depois que o
+    administrador conecta um canal e assina os webhooks na Meta.</li>
+    <li><strong>Tokens de acesso dos canais</strong> — gerados no fluxo OAuth com a Meta.
+    Ficam armazenados <strong>somente no servidor</strong> e nunca são enviados ao navegador.</li>
+    <li><strong>Credenciais do app Meta</strong> — App ID, App Secret e Config IDs informados
+    pelo administrador. O App Secret é usado apenas no servidor.</li>
+    <li><strong>Dados de administração</strong> — token de sessão do painel (protegido por senha)
+    e registros técnicos de acesso (data/hora, endpoint).</li>
+  </ul>
+  <p>O hub <strong>não</strong> usa cookies de rastreamento, não faz perfilamento publicitário e
+  não vende dados.</p>
+
+  <h2>3. Finalidade e base legal</h2>
+  <ul>
+    <li>Exibir, no painel, as interações dos canais Meta conectados e permitir sua auditoria —
+    <em>execução de contrato</em> e <em>legítimo interesse</em> do cliente.</li>
+    <li>Encaminhar (rotear) os eventos para as URLs de destino configuradas pelo próprio
+    administrador — <em>execução de contrato</em>.</li>
+    <li>Autenticar o acesso ao painel e manter a segurança — <em>legítimo interesse</em>.</li>
+  </ul>
+
+  <h2>4. Compartilhamento</h2>
+  <p>Os dados são compartilhados apenas: (a) com a <strong>Meta Platforms</strong>, como parte do
+  funcionamento das APIs de WhatsApp, Messenger e Instagram; e (b) com os <strong>sistemas de
+  destino</strong> que o próprio administrador cadastra para encaminhamento dos webhooks. Não há
+  outro compartilhamento com terceiros.</p>
+
+  <h2>5. Retenção e modo de operação</h2>
+  <p>Por app, o administrador escolhe entre <strong>guardar histórico</strong> (os eventos ficam
+  em arquivos JSON no servidor) ou <strong>modo transacional</strong> (o evento é apenas
+  encaminhado, sem ser armazenado). O histórico pode ser limpo a qualquer momento pelo painel.
+  Ao remover um app ou canal, os tokens e a associação das interações correspondentes são
+  apagados.</p>
+
+  <h2>6. Segurança</h2>
+  <ul>
+    <li>Todo o tráfego é servido por <strong>HTTPS</strong>.</li>
+    <li>App Secret e tokens de canal ficam exclusivamente no servidor.</li>
+    <li>Os webhooks são validados pela assinatura <code>X-Hub-Signature-256</code>.</li>
+    <li>O painel é protegido por senha e as sessões expiram.</li>
+  </ul>
+
+  <h2>7. Direitos do titular</h2>
+  <p>Nos termos da LGPD, o titular pode solicitar confirmação de tratamento, acesso, correção,
+  anonimização, portabilidade e <strong>eliminação</strong> dos seus dados. Pedidos relativos a
+  dados recebidos por um canal conectado são encaminhados ao cliente controlador daquele canal.</p>
+
+  <h2>8. Exclusão de dados</h2>
+  <p>As instruções para solicitar a exclusão estão em
+  <a href="/exclusao-de-dados">agencia.inoovaweb.com.br/exclusao-de-dados</a>.</p>
+
+  <h2>9. Contato</h2>
+  <p>Encarregado de dados / contato: <a href="mailto:balbis2050@gmail.com">balbis2050@gmail.com</a>.</p>
+
+  <h2>10. Alterações</h2>
+  <p>Esta política pode ser atualizada. A data de vigência acima indica a última revisão.</p>
+
+  <div class="foot">InoovaWeb — Automação &amp; Tecnologia Digital ·
+  <a href="/termos">Termos de Serviço</a> ·
+  <a href="/exclusao-de-dados">Exclusão de dados</a></div>
+</div>
+</body>
+</html>

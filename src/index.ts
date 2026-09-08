@@ -881,6 +881,13 @@ app.get("/i18n-data.js", (_req: Request, res: Response) => {
   res.send(localesScript());
 });
 
+// Páginas legais (exigidas pela Meta: política de privacidade, termos, exclusão
+// de dados). Servidas em URLs limpas a partir de public/legal/.
+const LEGAL_DIR = path.join(__dirname, "..", "public", "legal");
+app.get("/privacidade", (_req, res) => res.sendFile(path.join(LEGAL_DIR, "privacidade.html")));
+app.get("/termos", (_req, res) => res.sendFile(path.join(LEGAL_DIR, "termos.html")));
+app.get("/exclusao-de-dados", (_req, res) => res.sendFile(path.join(LEGAL_DIR, "exclusao-de-dados.html")));
+
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.get("/", (_req: Request, res: Response) => res.sendFile(path.join(__dirname, "..", "public", "index.html")));
 app.use("/api", (_req: Request, res: Response) => res.status(404).json({ error: "NOT_FOUND" }));

@@ -25,7 +25,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "express-rate-limit": "^7.4.0"
+    "express-rate-limit": "^7.4.0",
+    "ws": "^8.21.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
@@ -36,7 +37,6 @@
     "@xterm/xterm": "^6.0.0",
     "node-pty": "^1.1.0",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.4.5",
-    "ws": "^8.21.3"
+    "typescript": "^5.4.5"
   }
 }

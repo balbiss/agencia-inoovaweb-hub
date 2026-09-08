@@ -9,6 +9,10 @@
 FROM node:20-alpine AS builder
 WORKDIR /app
 
+# node-pty (devDependency, usado só pelo terminal de demo) tem addon nativo:
+# precisa de python3/make/g++ para o node-gyp compilar durante o npm ci.
+RUN apk add --no-cache python3 make g++
+
 # Instala TODAS as dependências (inclui devDependencies, necessárias p/ o tsc).
 COPY package.json package-lock.json ./
 RUN npm ci

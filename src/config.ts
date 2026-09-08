@@ -40,7 +40,7 @@ export const FORWARD_TIMEOUT_MS = Math.max(2000, Number(env("FORWARD_TIMEOUT_MS"
 
 // AGPL-3.0 §13: remote users must be able to obtain the Corresponding Source.
 // Shown as a "Source" link in the panel footer. Override via env if you fork.
-export const SOURCE_URL = (env("SOURCE_URL") || "https://github.com/pedroherpeto/oauth-hub-zdg").replace(/\/$/, "");
+export const SOURCE_URL = (env("SOURCE_URL") || "https://github.com/balbiss/agencia-inoovaweb-hub").replace(/\/$/, "");
 
 export const SESSION_SECRET = (() => {
   const fromEnv = env("SESSION_SECRET");
@@ -73,7 +73,7 @@ export const SESSION_SECRET = (() => {
 })();
 
 export function getBrand(): string {
-  return getSettings().brandName || env("BRAND_NAME") || "Hub Meta Apps";
+  return getSettings().brandName || env("BRAND_NAME") || "InoovaWeb — Hub de Canais";
 }
 
 // ─── Per-app derived values ────────────────────────────────────────────────────

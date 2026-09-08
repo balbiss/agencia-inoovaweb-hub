@@ -1,6 +1,6 @@
 /* ─────────────────────────────────────────────────────────────────────────────
-   Mission Control — oauth-hub design system
-   Neutral "ink" chrome + a single emerald "signal" accent. Light + dark.
+   Mission Control — InoovaWeb hub design system
+   Neutral "ink" chrome + a single InoovaWeb orange "signal" accent. Light + dark.
    Data-forward, console-grade, restrained. Vanilla CSS, no deps.
    ───────────────────────────────────────────────────────────────────────────── */
 :root {
@@ -20,14 +20,14 @@
   --muted-2: #8a93a4;
   --muted-3: #abb2c1;
 
-  /* signal — emerald */
-  --signal: #10b981;
-  --signal-2: #059669;
-  --signal-ink: #057a55;
-  --signal-soft: #e6f8f0;
-  --signal-border: #b4e8d1;
-  --signal-grad: linear-gradient(180deg, #16c98c 0%, #0ea372 100%);
-  --signal-glow: 0 1px 2px rgba(5,80,55,.18), 0 10px 24px -8px rgba(16,185,129,.5);
+  /* signal — InoovaWeb orange */
+  --signal: #e8650b;
+  --signal-2: #cf5a05;
+  --signal-ink: #ab4c05;
+  --signal-soft: #fdefe1;
+  --signal-border: #f6d1a9;
+  --signal-grad: linear-gradient(180deg, #ff8a2a 0%, #ec6a0c 100%);
+  --signal-glow: 0 1px 2px rgba(120,55,5,.2), 0 10px 24px -8px rgba(238,106,12,.5);
 
   /* semantic */
   --ok: #0c9b6e; --ok-soft: #e6f8f0; --ok-ink: #067150; --ok-border: #b4e8d1;
@@ -50,13 +50,13 @@
   --sh-md: 0 14px 34px -10px rgba(12,17,32,.18);
   --sh-lg: 0 30px 70px -18px rgba(12,17,32,.32);
   --top-hi: inset 0 1px 0 rgba(255,255,255,.7);
-  --ring: rgba(16,185,129,.42);
+  --ring: rgba(238,106,12,.42);
 
   /* chrome */
   --side-w: 252px;
   --maxw: 1200px;
   --grid-line: rgba(12,17,32,.04);
-  --glow-1: rgba(16,185,129,.12);
+  --glow-1: rgba(238,106,12,.13);
   --glow-2: rgba(59,130,246,.05);
   --scrim: rgba(12,17,32,.42);
 
@@ -82,13 +82,13 @@
   --muted-2: #6a7588;
   --muted-3: #4a5365;
 
-  --signal: #18cf94;
-  --signal-2: #0fb37f;
-  --signal-ink: #5fe6bd;
-  --signal-soft: #0f2a23;
-  --signal-border: #1d4a3c;
-  --signal-grad: linear-gradient(180deg, #1ad497 0%, #0fb07c 100%);
-  --signal-glow: 0 0 0 1px rgba(24,207,148,.18), 0 12px 30px -8px rgba(16,185,129,.45);
+  --signal: #ff8636;
+  --signal-2: #f06f16;
+  --signal-ink: #ffb079;
+  --signal-soft: #2a1a0d;
+  --signal-border: #4a3220;
+  --signal-grad: linear-gradient(180deg, #ff9548 0%, #f0760f 100%);
+  --signal-glow: 0 0 0 1px rgba(255,134,54,.2), 0 12px 30px -8px rgba(240,120,20,.45);
 
   --ok: #18cf94; --ok-soft: #0f2a23; --ok-ink: #5fe6bd; --ok-border: #1d4a3c;
   --warn: #e0962f; --warn-soft: #2b2110; --warn-ink: #f4c074; --warn-border: #4a3a18;
@@ -105,7 +105,7 @@
   --top-hi: inset 0 1px 0 rgba(255,255,255,.04);
 
   --grid-line: rgba(255,255,255,.028);
-  --glow-1: rgba(16,185,129,.16);
+  --glow-1: rgba(255,134,54,.17);
   --glow-2: rgba(59,130,246,.07);
   --scrim: rgba(2,4,8,.62);
 }
@@ -145,7 +145,7 @@ textarea:focus-visible, [tabindex]:focus-visible {
   border-radius: 8px;
 }
 .hidden { display: none !important; }
-::selection { background: rgba(16,185,129,.26); }
+::selection { background: rgba(238,106,12,.24); }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 999px; border: 2px solid transparent; background-clip: padding-box; }
@@ -199,9 +199,9 @@ textarea:focus-visible, [tabindex]:focus-visible {
   padding: 2.6rem 2.2rem; width: 100%; max-width: 410px; text-align: center;
 }
 .login-logo {
-  width: 58px; height: 58px; margin: 0 auto 1.1rem; border-radius: 16px; padding: 6px;
+  width: 58px; height: 58px; margin: 0 auto 1.1rem; border-radius: 16px; padding: 9px;
   display: flex; align-items: center; justify-content: center; overflow: hidden;
-  background: #fff; box-shadow: 0 10px 26px -8px var(--signal-glow);
+  background: #101018; box-shadow: 0 10px 26px -8px var(--signal-glow);
 }
 .login-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .login-card .brand { font-size: 1.4rem; font-weight: 800; letter-spacing: -.025em; }
@@ -227,7 +227,7 @@ textarea:focus-visible, [tabindex]:focus-visible {
   border: 1px solid var(--border); border-radius: var(--r-xl); box-shadow: var(--sh-lg), var(--top-hi);
   padding: 2.5rem 2.2rem;
 }
-.wc-logo { width: 62px; height: 62px; border-radius: 16px; padding: 6px; background: #fff; box-shadow: 0 10px 26px -10px var(--signal); display: inline-flex; margin-bottom: 1.1rem; }
+.wc-logo { width: 64px; height: 64px; border-radius: 17px; padding: 10px; background: #101018; box-shadow: 0 12px 30px -10px var(--signal); display: inline-flex; margin-bottom: 1.1rem; }
 .wc-logo img { width: 100%; height: 100%; object-fit: contain; }
 .wc-eyebrow { font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--signal-ink); background: var(--signal-soft); border: 1px solid var(--signal-border); display: inline-block; padding: .3rem .7rem; border-radius: var(--pill); margin-bottom: 1rem; }
 .welcome-card h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -.03em; line-height: 1.15; margin-bottom: .7rem; }
@@ -237,12 +237,15 @@ textarea:focus-visible, [tabindex]:focus-visible {
 .wc-ch img { width: 16px; height: 16px; object-fit: contain; }
 .wc-actions { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
 .wc-actions .btn { text-decoration: none; }
-.btn.yt { background: linear-gradient(180deg, #ff3b3b, #e11414); color: #fff; box-shadow: 0 12px 26px -10px rgba(225,20,20,.65); }
-.btn.yt:hover { text-decoration: none; }
-.btn.yt svg { width: 17px; height: 17px; }
 .wc-enter { background: none; border: none; color: var(--muted); font-weight: 650; font-size: .86rem; cursor: pointer; padding: .5rem .6rem; display: inline-flex; align-items: center; gap: .35rem; border-radius: var(--r-sm); transition: color .15s, background .15s; }
 .wc-enter svg { width: 15px; height: 15px; }
 .wc-enter:hover { color: var(--text); background: var(--surface-2); }
+.wc-enter.primary-enter {
+  margin-top: .4rem; padding: .8rem 1.5rem; color: #fff; font-size: .92rem; font-weight: 700;
+  background: var(--signal-grad); box-shadow: var(--signal-glow);
+}
+.wc-enter.primary-enter svg { width: 17px; height: 17px; }
+.wc-enter.primary-enter:hover { color: #fff; filter: brightness(1.04); transform: translateY(-1px); }
 .wc-foot { margin-top: 1rem; font-size: .76rem; color: var(--muted-2); }
 .wc-foot a { font-weight: 700; }
 
@@ -303,18 +306,14 @@ textarea:focus-visible, [tabindex]:focus-visible {
   background: linear-gradient(165deg, color-mix(in srgb, var(--signal) 14%, var(--surface)), var(--surface));
   border: 1px solid var(--border); border-radius: var(--r-lg); text-align: center; box-shadow: var(--sh-sm);
 }
-.side-promo .zpro-logo-dark { height: 26px; margin: 0 auto .6rem; display: block; }
-:root:not([data-theme="dark"]) .side-promo .zpro-logo-dark { filter: invert(1) brightness(.2); }
-.side-promo .promo-text { font-size: .74rem; color: var(--muted); line-height: 1.5; margin-bottom: .8rem; }
+.side-promo .iw-logo-side { height: 20px; margin: 0 auto .55rem; display: block; }
+.side-promo .promo-text { font-size: .74rem; color: var(--muted); line-height: 1.5; }
 .side-promo a.promo-btn {
   display: block; text-align: center; background: var(--signal-grad); color: #fff;
   font-weight: 700; font-size: .78rem; padding: .52rem; border-radius: var(--r-sm); box-shadow: var(--signal-glow);
   transition: transform .12s;
 }
 .side-promo a.promo-btn:hover { transform: translateY(-1px); text-decoration: none; }
-.side-community { margin: 0 .85rem 1rem; font-size: .72rem; text-align: center; }
-.side-community a { color: var(--muted-2); font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
-.side-community a:hover { color: var(--text); text-decoration: none; }
 
 .content { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 
@@ -767,7 +766,8 @@ section[id^="tab-"].tab-enter { animation: tabIn .34s var(--ease); }
 :root[data-theme="dark"] .ev-row pre { background: #07090f; }
 
 /* ── Brand logos / About ──────────────────────────────────────────────────── */
-.zpro-logo-light { height: 30px; display: block; }
+.iw-logo-side, .iw-logo-about { height: 26px; display: block; }
+#ovSidePanel .iw-logo-side { height: 24px; }
 .about-card { background: linear-gradient(140deg, var(--signal-soft), var(--surface) 70%); border-color: var(--signal-border); }
 
 /* ── Footer ───────────────────────────────────────────────────────────────── */

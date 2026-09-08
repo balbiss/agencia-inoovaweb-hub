@@ -116,21 +116,21 @@ function renderResultPage(res: Response, ok: boolean, lang: string, titleKey: st
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   res.send(`<!DOCTYPE html><html lang="${L}"><head><meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>${htmlEscape(title)} · ZDG</title>
+<title>${htmlEscape(title)} · InoovaWeb</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   :root{--bg:#f3f4f7;--card:#fff;--text:#0a0d15;--muted:#5b6473;--border:#e7e9f1}
   @media (prefers-color-scheme:dark){:root{--bg:#07090f;--card:#11141d;--text:#e9eef7;--muted:#96a0b1;--border:#1f232f}}
-  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:1rem;color:var(--text);background:radial-gradient(760px 440px at 100% -10%,rgba(16,185,129,.16),transparent 60%),var(--bg)}
+  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:1rem;color:var(--text);background:radial-gradient(760px 440px at 100% -10%,rgba(238,106,12,.18),transparent 60%),var(--bg)}
   .box{text-align:center;padding:2.5rem 2rem;max-width:440px;width:100%;background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:0 30px 70px -22px rgba(8,12,22,.45)}
   .icon{margin-bottom:1rem}
   .icon svg{width:54px;height:54px}
   h3{font-size:1.15rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.5rem;color:${color}}
   p{font-size:.9rem;color:var(--muted);line-height:1.55}
-  a.back{display:inline-block;margin-top:1.3rem;padding:.65rem 1.4rem;background:linear-gradient(180deg,#16c98c,#0ea372);color:#fff;border-radius:11px;text-decoration:none;font-size:.85rem;font-weight:700;box-shadow:0 12px 26px -10px rgba(16,185,129,.85)}
+  a.back{display:inline-block;margin-top:1.3rem;padding:.65rem 1.4rem;background:linear-gradient(180deg,#ff8a2a,#ec6a0c);color:#fff;border-radius:11px;text-decoration:none;font-size:.85rem;font-weight:700;box-shadow:0 12px 26px -10px rgba(238,106,12,.85)}
   .promo-foot{margin-top:1.3rem;font-size:.76rem;color:var(--muted);text-align:center}
-  .promo-foot a{color:#0ea372;font-weight:700;text-decoration:none}
+  .promo-foot a{color:#d9600a;font-weight:700;text-decoration:none}
 </style></head><body>
 <div class="box">
   <div class="icon">${icon}</div>
@@ -139,7 +139,7 @@ function renderResultPage(res: Response, ok: boolean, lang: string, titleKey: st
   <a class="back" href="/">${htmlEscape(back)}</a>
 </div>
 <div class="promo-foot">
-  <a href="https://www.youtube.com/channel/UCrPbAoQKz42Gm0mLdWatAEA" target="_blank" rel="noopener">${htmlEscape(footer)}</a> · <a href="https://zpro.zdg.com.br/" target="_blank" rel="noopener">${htmlEscape(knowZpro)}</a>
+  <a href="https://inoovaweb.com.br" target="_blank" rel="noopener">${htmlEscape(footer)}</a> · <a href="https://inoovaweb.com.br" target="_blank" rel="noopener">${htmlEscape(knowZpro)}</a>
 </div>
 <script>
   try { if (window.opener) { window.opener.postMessage({ type: 'hub:connected', ok: ${ok ? "true" : "false"} }, window.location.origin); setTimeout(function(){ window.close(); }, 2500); } } catch(e){}

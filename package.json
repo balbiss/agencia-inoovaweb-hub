@@ -1,16 +1,16 @@
 {
   "name": "oauth-hub",
   "version": "1.0.0",
-  "description": "Standalone whitelabel hub to connect Meta channels (WhatsApp Business, Messenger, Instagram) and receive their webhook interactions. No external license or backend dependency.",
+  "description": "InoovaWeb — hub whitelabel para conectar canais Meta (WhatsApp Business, Messenger, Instagram) e receber os webhooks das interações. Fork de oauth-hub (Comunidade ZDG).",
   "license": "AGPL-3.0-only",
-  "author": "Comunidade ZDG",
-  "homepage": "https://github.com/pedroherpeto/oauth-hub-zdg",
+  "author": "InoovaWeb (fork de Comunidade ZDG — oauth-hub)",
+  "homepage": "https://github.com/balbiss/agencia-inoovaweb-hub",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pedroherpeto/oauth-hub-zdg.git"
+    "url": "git+https://github.com/balbiss/agencia-inoovaweb-hub.git"
   },
   "bugs": {
-    "url": "https://github.com/pedroherpeto/oauth-hub-zdg/issues"
+    "url": "https://github.com/balbiss/agencia-inoovaweb-hub/issues"
   },
   "main": "dist/index.js",
   "scripts": {

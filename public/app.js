@@ -13,8 +13,7 @@
   var soundOn = false;
   try { soundOn = localStorage.getItem("hub_sound") === "1"; } catch (e) {}
 
-  var YT_URL = "https://www.youtube.com/channel/UCrPbAoQKz42Gm0mLdWatAEA";
-  var ZP_URL = "https://zpro.zdg.com.br/";
+  var SITE_URL = "https://inoovaweb.com.br";
   var TABS = ["overview", "events", "channels", "apps", "config", "guide", "evidence", "terminal"];
 
   function $(id) { return document.getElementById(id); }
@@ -175,11 +174,11 @@
   // ── i18n glue ──────────────────────────────────────────────
   function applyPromo() {
     var community = t("brand.community");
-    var ytLink = '<a href="' + YT_URL + '" target="_blank" rel="noopener"><b>' + esc(community) + "</b></a>";
-    var ytPlain = '<a href="' + YT_URL + '" target="_blank" rel="noopener">' + esc(community) + "</a>";
-    var lf = $("loginFoot"); if (lf) lf.innerHTML = t("login.tool", { zdg: ytLink });
-    var ad = $("aboutDesc"); if (ad) ad.innerHTML = t("config.aboutDesc", { zdg: ytLink });
-    var fo = $("footerOffered"); if (fo) fo.innerHTML = t("footer.offered", { zdg: ytPlain });
+    var siteLink = '<a href="' + SITE_URL + '" target="_blank" rel="noopener"><b>' + esc(community) + "</b></a>";
+    var sitePlain = '<a href="' + SITE_URL + '" target="_blank" rel="noopener">' + esc(community) + "</a>";
+    var lf = $("loginFoot"); if (lf) lf.innerHTML = t("login.tool", { zdg: siteLink });
+    var ad = $("aboutDesc"); if (ad) ad.innerHTML = t("config.aboutDesc", { zdg: siteLink });
+    var fo = $("footerOffered"); if (fo) fo.innerHTML = t("footer.offered", { zdg: sitePlain });
   }
   function buildLangSwitcher() {
     var btn = $("langDDBtn"), cur = $("langDDCur"), menu = $("langDDMenu");
@@ -341,11 +340,10 @@
     if (hasApp && hasVerify && hasChannel) {
       box.innerHTML =
         '<div class="panel-eyebrow">' + icon("sparkles") + "<span>" + esc(t("overview.promoEyebrow")) + "</span></div>" +
-        '<a href="' + ZP_URL + '" target="_blank" rel="noopener" aria-label="Z-PRO"><img class="zpro-logo-light" src="/assets/zpro-logo.png" alt="Z-PRO" style="margin:.2rem 0 .85rem" /></a>' +
+        '<img class="iw-logo-side" src="/assets/iw-logo.png" alt="InoovaWeb" style="margin:.2rem 0 .85rem" />' +
         '<p style="font-size:.85rem;color:var(--muted);line-height:1.55;margin-bottom:1rem">' + t("config.aboutP") + "</p>" +
         '<div class="side-cta">' +
-          '<a class="btn yt" href="' + YT_URL + '?sub_confirmation=1" target="_blank" rel="noopener">' + icon("youtube") + "<span>" + esc(t("welcome.subscribe")) + "</span></a>" +
-          '<a class="btn secondary" href="' + ZP_URL + '" target="_blank" rel="noopener">' + esc(t("hero.knowZpro")) + "</a>" +
+          '<a class="btn secondary" href="' + SITE_URL + '" target="_blank" rel="noopener">' + esc(t("hero.knowZpro")) + "</a>" +
         "</div>";
       return;
     }
@@ -474,7 +472,7 @@
   function embedSnippet(appId, channel) {
     var url = embedUrl(appId, channel);
     return '<a href="' + url + '" target="_blank" rel="noopener" ' +
-      "onclick=\"window.open(this.href,'zdg_connect','width=560,height=740');return false;\" " +
+      "onclick=\"window.open(this.href,'iw_connect','width=560,height=740');return false;\" " +
       'style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;background:' + CH_COLOR[channel] +
       ';color:#fff;font:600 14px/1 -apple-system,Segoe UI,Roboto,sans-serif;text-decoration:none;">' +
       '<img src="' + publicUrl + CH_IMG[channel] + '" alt="" style="width:18px;height:18px;border-radius:4px" /> ' + t("embed." + channel) + "</a>";
@@ -1220,7 +1218,7 @@
     document.addEventListener("click", function (e) {
       if (!e.target.closest) return;
       var tb = e.target.closest("[data-embed-test]");
-      if (tb) { var w = window.open(tb.getAttribute("data-embed-test"), "zdg_connect", "width=560,height=740"); if (!w) toast(t("embed.popupBlocked"), true); return; }
+      if (tb) { var w = window.open(tb.getAttribute("data-embed-test"), "iw_connect", "width=560,height=740"); if (!w) toast(t("embed.popupBlocked"), true); return; }
       var b = e.target.closest("[data-copy-text]");
       if (b) navigator.clipboard.writeText(b.getAttribute("data-copy-text")).then(function () { toast(t("toast.copied")); }, function () { toast(t("toast.copyFail"), true); });
     });

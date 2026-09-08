@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hub Meta Apps</title>
+  <title>InoovaWeb · Hub de Canais</title>
   <link rel="icon" href="/favicon.ico" />
   <script>(function(){try{var s=localStorage.getItem('hub_theme');var d=s?s==='dark':(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(d)document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,8 +17,8 @@
   <!-- ── Login ─────────────────────────────────────────────── -->
   <div id="login" class="login-wrap hidden">
     <div class="login-card">
-      <div class="login-logo"><a href="https://zpro.zdg.com.br/" target="_blank" rel="noopener" aria-label="Z-PRO" style="display:flex;width:100%;height:100%"><img src="/assets/brand-icon.png" alt="Z-PRO" /></a></div>
-      <div class="brand" id="loginBrand">Hub Meta Apps</div>
+      <div class="login-logo"><img src="/assets/iw-icon.png" alt="InoovaWeb" /></div>
+      <div class="brand" id="loginBrand">InoovaWeb</div>
       <div class="sub" data-i18n="login.subtitle">Painel de conexão de canais Meta</div>
       <form id="loginForm">
         <input type="password" id="loginPass" autocomplete="current-password" data-i18n-ph="login.password" data-i18n-aria="login.password" />
@@ -26,7 +26,7 @@
         <button class="btn" id="loginBtn" type="submit" style="width:100%" data-i18n="login.enter">Entrar</button>
       </form>
       <div class="login-foot">
-        <a href="https://zpro.zdg.com.br/" target="_blank" rel="noopener"><img src="/assets/zpro-logo.png" alt="Z-PRO" style="height:26px;margin:0 auto .6rem;display:block" /></a>
+        <img src="/assets/iw-logo.png" alt="InoovaWeb" style="height:22px;margin:0 auto .6rem;display:block" />
         <div id="loginFoot"></div>
       </div>
     </div>
@@ -35,23 +35,16 @@
   <!-- ── Welcome (initial screen) ──────────────────────────── -->
   <div id="welcome" class="welcome-wrap hidden">
     <div class="welcome-card">
-      <a class="wc-logo" href="https://zpro.zdg.com.br/" target="_blank" rel="noopener" aria-label="Z-PRO"><img src="/assets/brand-icon.png" alt="Z-PRO" /></a>
-      <h1 data-i18n="welcome.title">Uma ferramenta gratuita da Comunidade ZDG</h1>
+      <span class="wc-logo"><img src="/assets/iw-icon.png" alt="InoovaWeb" /></span>
+      <h1 data-i18n="welcome.title">Hub de canais Meta da InoovaWeb</h1>
       <p class="wc-lead" data-i18n="welcome.lead">Conecte WhatsApp Business, Messenger e Instagram e acompanhe os webhooks em tempo real.</p>
       <div class="wc-channels">
         <span class="wc-ch"><img src="/assets/waba.png" alt="" /> WhatsApp</span>
         <span class="wc-ch"><img src="/assets/messenger.png" alt="" /> Messenger</span>
         <span class="wc-ch"><img src="/assets/instagram.png" alt="" /> Instagram</span>
       </div>
-      <div class="wc-actions">
-        <a class="btn yt" id="welcomeSubscribe" href="https://www.youtube.com/channel/UCrPbAoQKz42Gm0mLdWatAEA?sub_confirmation=1" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
-          <span data-i18n="welcome.subscribe">Inscreva-se no canal</span>
-        </a>
-        <a class="btn secondary" href="https://zpro.zdg.com.br/" target="_blank" rel="noopener" data-i18n="welcome.knowZpro">Conheça o Z-PRO</a>
-      </div>
-      <button class="wc-enter" id="welcomeEnter" type="button"><span data-i18n="welcome.enter">Acessar o painel</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
-      <div class="wc-foot"><a href="https://www.youtube.com/channel/UCrPbAoQKz42Gm0mLdWatAEA" target="_blank" rel="noopener" data-i18n="welcome.foot">by Comunidade ZDG</a></div>
+      <button class="wc-enter primary-enter" id="welcomeEnter" type="button"><span data-i18n="welcome.enter">Acessar o painel</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+      <div class="wc-foot"><span data-i18n="welcome.foot">by InoovaWeb</span></div>
     </div>
   </div>
 
@@ -62,10 +55,10 @@
       <!-- Sidebar -->
       <aside class="sidebar">
         <div class="side-brand">
-          <div class="logo"><a href="https://zpro.zdg.com.br/" target="_blank" rel="noopener" aria-label="Z-PRO" style="display:flex;width:100%;height:100%"><img src="/assets/brand-icon.png" alt="Z-PRO" /></a></div>
+          <div class="logo"><img src="/assets/iw-icon.png" alt="InoovaWeb" style="width:100%;height:100%;object-fit:contain" /></div>
           <button class="side-brand-text" id="brandHome" type="button" data-i18n-aria="welcome.enter">
-            <div class="side-title" id="brandName">Hub Meta Apps</div>
-            <div class="side-sub" data-i18n="side.by">by Comunidade ZDG</div>
+            <div class="side-title" id="brandName">InoovaWeb</div>
+            <div class="side-sub" data-i18n="side.by">by InoovaWeb</div>
           </button>
         </div>
 
@@ -120,12 +113,8 @@
         <div class="side-spacer"></div>
 
         <div class="side-promo">
-          <a href="https://zpro.zdg.com.br/" target="_blank" rel="noopener" aria-label="Z-PRO"><img class="zpro-logo-dark" src="/assets/zpro-logo-dark.png" alt="Z-PRO" /></a>
-          <div class="promo-text" data-i18n="side.promo">Plataforma completa de multiatendimento.</div>
-          <a class="promo-btn" href="https://zpro.zdg.com.br/" target="_blank" rel="noopener" data-i18n="side.knowZpro">Conheça o Z-PRO →</a>
-        </div>
-        <div class="side-community">
-          <a href="https://www.youtube.com/channel/UCrPbAoQKz42Gm0mLdWatAEA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg><span data-i18n="side.youtube">Comunidade ZDG no YouTube</span></a>
+          <img class="iw-logo-side" src="/assets/iw-logo.png" alt="InoovaWeb" />
+          <div class="promo-text" data-i18n="side.promo">Automação &amp; Tecnologia Digital.</div>
         </div>
       </aside>
 
@@ -302,59 +291,22 @@
               <div class="desc" data-i18n="config.desc">Preferências globais do painel.</div>
               <div class="field" style="max-width:340px">
                 <label data-i18n="config.brandLabel">Nome de marca (painel)</label>
-                <input id="cfgBrand" placeholder="Hub Meta Apps" />
+                <input id="cfgBrand" placeholder="InoovaWeb — Hub de Canais" />
               </div>
               <button class="btn" id="saveSettings" data-i18n="config.save">Salvar</button>
             </div>
 
             <div class="card about-card">
-              <a href="https://zpro.zdg.com.br/" target="_blank" rel="noopener" aria-label="Z-PRO" style="display:inline-block;margin-bottom:1rem"><img class="zpro-logo-light" src="/assets/zpro-logo.png" alt="Z-PRO" /></a>
-              <h2 data-i18n="config.aboutTitle">Sobre este projeto</h2>
+              <img class="iw-logo-about" src="/assets/iw-logo.png" alt="InoovaWeb" style="height:30px;display:block;margin-bottom:1rem" />
+              <h2 data-i18n="config.aboutTitle">Sobre este painel</h2>
               <div class="desc" id="aboutDesc" style="margin-bottom:.75rem"></div>
               <p style="font-size:.85rem;color:var(--muted);margin-bottom:1rem" data-i18n-html="config.aboutP"></p>
-              <a class="btn" href="https://zpro.zdg.com.br/" target="_blank" rel="noopener" data-i18n="config.aboutBtn">Acessar zpro.zdg.com.br</a>
+              <a class="btn" href="https://inoovaweb.com.br" target="_blank" rel="noopener" data-i18n="config.aboutBtn">Acessar inoovaweb.com.br</a>
             </div>
           </section>
 
           <!-- ── Guide tab ────────────────────────────────────── -->
           <section id="tab-guide" class="hidden">
-            <div class="card guide-videos">
-              <h3 data-i18n="guide.videos.t"></h3>
-              <div class="desc" data-i18n="guide.videos.intro"></div>
-              <ul class="video-list">
-                <li>
-                  <a href="https://youtu.be/Mo9tDcvP9Tc" target="_blank" rel="noopener">
-                    <span class="vthumb-wrap"><img class="vthumb" src="https://img.youtube.com/vi/Mo9tDcvP9Tc/hqdefault.jpg" alt="" loading="lazy" /><svg class="vplay" viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
-                    <span class="vlabel" data-i18n="guide.videos.v1"></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://youtu.be/opZvh-NKmtQ" target="_blank" rel="noopener">
-                    <span class="vthumb-wrap"><img class="vthumb" src="https://img.youtube.com/vi/opZvh-NKmtQ/hqdefault.jpg" alt="" loading="lazy" /><svg class="vplay" viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
-                    <span class="vlabel" data-i18n="guide.videos.v2"></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://youtu.be/MpMQsRT6ba4" target="_blank" rel="noopener">
-                    <span class="vthumb-wrap"><img class="vthumb" src="https://img.youtube.com/vi/MpMQsRT6ba4/hqdefault.jpg" alt="" loading="lazy" /><svg class="vplay" viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
-                    <span class="vlabel" data-i18n="guide.videos.v3"></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://youtu.be/HCFWdhL838o" target="_blank" rel="noopener">
-                    <span class="vthumb-wrap"><img class="vthumb" src="https://img.youtube.com/vi/HCFWdhL838o/hqdefault.jpg" alt="" loading="lazy" /><svg class="vplay" viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
-                    <span class="vlabel" data-i18n="guide.videos.v4"></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://youtu.be/019ipHeExKU" target="_blank" rel="noopener">
-                    <span class="vthumb-wrap"><img class="vthumb" src="https://img.youtube.com/vi/019ipHeExKU/hqdefault.jpg" alt="" loading="lazy" /><svg class="vplay" viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
-                    <span class="vlabel" data-i18n="guide.videos.v5"></span>
-                  </a>
-                </li>
-              </ul>
-              <div class="hint" data-i18n="guide.videos.note" style="margin-top:.5rem"></div>
-            </div>
             <div class="card">
               <h2 data-i18n="guide.title">Como configurar seu app na Meta</h2>
               <div class="desc" data-i18n="guide.intro"></div>
@@ -429,9 +381,9 @@
           <footer class="app-footer">
             <span id="footerOffered"></span>
             <span class="dot">·</span>
-            <a href="https://zpro.zdg.com.br/" target="_blank" rel="noopener" data-i18n="footer.zpro">Z-PRO — Plataforma de Multiatendimento</a>
+            <a href="https://inoovaweb.com.br" target="_blank" rel="noopener" data-i18n="footer.zpro">InoovaWeb — Automação &amp; Tecnologia Digital</a>
             <span class="dot">·</span>
-            <a id="footerSource" href="https://github.com/pedroherpeto/oauth-hub-zdg" target="_blank" rel="noopener" data-i18n="footer.source">Código-fonte (AGPL-3.0)</a>
+            <a id="footerSource" href="https://github.com/balbiss/agencia-inoovaweb-hub" target="_blank" rel="noopener" data-i18n="footer.source">Código-fonte (AGPL-3.0)</a>
           </footer>
         </main>
       </div>

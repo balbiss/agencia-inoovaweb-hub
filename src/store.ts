@@ -30,7 +30,7 @@ function ensureDir(): void {
   if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 }
 
-function readJson<T>(file: string, fallback: T): T {
+export function readJson<T>(file: string, fallback: T): T {
   try {
     const full = path.join(DATA_DIR, file);
     if (!fs.existsSync(full)) return fallback;
@@ -42,7 +42,7 @@ function readJson<T>(file: string, fallback: T): T {
 }
 
 const timers: Record<string, NodeJS.Timeout> = {};
-function writeJson(file: string, data: unknown, debounceMs = 300): void {
+export function writeJson(file: string, data: unknown, debounceMs = 300): void {
   if (timers[file]) clearTimeout(timers[file]);
   timers[file] = setTimeout(() => {
     try {

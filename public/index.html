@@ -87,6 +87,11 @@
             <span class="lbl" data-i18n="nav.apps">Apps</span>
             <span class="nav-count" id="navCountApps" hidden></span>
           </button>
+          <button data-tab="leads" data-i18n-aria="nav.leads">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.17-2.83L3 3"/><path d="m15 9 6-6"/></svg>
+            <span class="lbl" data-i18n="nav.leads">Leads (CRMs)</span>
+            <span class="nav-count" id="navCountLeads" hidden></span>
+          </button>
           <button data-tab="config" data-i18n-aria="nav.config">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
             <span class="lbl" data-i18n="nav.config">Configuração</span>
@@ -282,6 +287,38 @@
               </div>
             </div>
             <div id="appsList"></div>
+          </section>
+
+          <!-- ── Leads tab (roteamento de Lead Ads por Página) ── -->
+          <section id="tab-leads" class="hidden">
+            <div class="sec-head">
+              <div>
+                <h2>Leads do Facebook por sistema</h2>
+                <div class="desc">Cada CRM que usa o mesmo app recebe só os leads das páginas que ele conectou. Uma página tem um dono só. Página sem dono segue os destinos do app.</div>
+              </div>
+              <div class="actions">
+                <button class="btn" id="newLeadClientBtn">+ Novo sistema</button>
+              </div>
+            </div>
+            <div id="leadClientForm" class="card hidden" style="margin-bottom:1rem">
+              <h2>Novo sistema (CRM)</h2>
+              <div class="grid2">
+                <div class="field"><label>Nome</label><input id="lcName" placeholder="Ex.: Visita IA CRM v2" /></div>
+                <div class="field"><label>App do hub</label><select id="lcApp"></select></div>
+              </div>
+              <div class="field"><label>URL de entrega (webhook do CRM)</label><input id="lcUrl" placeholder="https://api.seucrm.com/api/webhooks/facebook" /></div>
+              <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+                <button class="btn" id="lcSave">Criar sistema</button>
+                <button class="btn ghost" id="lcCancel">Cancelar</button>
+              </div>
+            </div>
+            <div id="leadClientKey" class="card hidden" style="margin-bottom:1rem"></div>
+            <div id="leadClientsList" style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem"></div>
+            <div class="card">
+              <h2>Mapa de páginas</h2>
+              <div class="desc">Qual página entrega leads para qual sistema. Os CRMs registram e liberam as páginas sozinhos quando a imobiliária conecta ou desconecta.</div>
+              <div id="leadRoutesList"></div>
+            </div>
           </section>
 
           <!-- ── Config tab ───────────────────────────────────── -->

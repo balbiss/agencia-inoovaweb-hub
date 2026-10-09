@@ -58,6 +58,7 @@ import * as meta from "./meta";
 import * as evidence from "./evidence";
 import { tServer, localesScript, normalizeLang, reloadLocales } from "./i18n";
 import { parseWebhook } from "./webhook-parse";
+import * as leads from "./leads";
 import { attachTerminal, isTerminalEnabled } from "./terminal";
 import { Channel, ChannelPublic, ChannelType, ForwardDest, ForwardProduct, MetaApp, WebhookEvent } from "./types";
 
@@ -172,6 +173,10 @@ function sanitizeForwards(input: any): ForwardDest[] {
 // ─────────────────────────────────────────────────────────────────────────────
 // PUBLIC bootstrap + login
 // ─────────────────────────────────────────────────────────────────────────────
+// Roteamento de leads do Facebook por Página (sistemas/CRMs que usam o mesmo app).
+app.use(["/api/lead-clients", "/api/lead-routes", "/api/leads"], apiLimiter);
+app.use(leads.leadsRouter());
+
 app.get("/api/bootstrap", apiLimiter, (_req: Request, res: Response) => {
   res.json({ brandName: getBrand(), adminAuthEnabled: !!ADMIN_PASSWORD, terminalEnabled: isTerminalEnabled() });
 });
@@ -802,11 +807,13 @@ function ingest(appCfg: MetaApp | null, req: Request): void {
   // storeEvents=false → relay-only ("transacional"): forward without keeping history.
   // Unidentified apps (resolved=null) are always stored so nothing is silently dropped.
   const keepHistory = !resolved || resolved.storeEvents !== false;
-  if (keepHistory) {
-    store.addEvent(ev);
-    if (resolved) relayToApp(resolved, parsed.product, rawBody, sig, ev.id);
-  } else if (resolved) {
-    relayToApp(resolved, parsed.product, rawBody, sig, null);
+  if (keepHistory) store.addEvent(ev);
+  if (resolved) {
+    const eventId = keepHistory ? ev.id : null;
+    // Aviso de lead (Lead Ads): vai só pro sistema dono da Página. Página sem dono
+    // (ou aviso que não é de lead) segue o repasse normal do app.
+    const lead = signatureValid ? leads.entregarLeadgen(resolved.id, body, rawBody, sig, eventId) : { leadgen: false, semDono: false };
+    if (!lead.leadgen || lead.semDono) relayToApp(resolved, parsed.product, rawBody, sig, lead.leadgen ? null : eventId);
   }
 
   if (WEBHOOK_DEBUG_LOG) {

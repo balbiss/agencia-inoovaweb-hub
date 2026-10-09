@@ -14,7 +14,7 @@
   try { soundOn = localStorage.getItem("hub_sound") === "1"; } catch (e) {}
 
   var SITE_URL = "https://inoovaweb.com.br";
-  var TABS = ["overview", "events", "channels", "apps", "config", "guide", "evidence", "terminal"];
+  var TABS = ["overview", "events", "channels", "apps", "leads", "config", "guide", "evidence", "terminal"];
 
   function $(id) { return document.getElementById(id); }
   function show(el) { el && el.classList.remove("hidden"); }
@@ -991,6 +991,65 @@
     setTimeout(function () { if (TERM.term) TERM.term.focus(); }, 120);
   }
 
+  // ── Leads (roteamento de Lead Ads por Página) ──────────────
+  var leadClients = [], leadRoutes = [];
+  function loadLeads() {
+    Promise.all([api("/api/lead-clients"), api("/api/lead-routes")]).then(function (r) {
+      leadClients = r[0] || []; leadRoutes = r[1] || [];
+      setNavCount("navCountLeads", leadClients.length);
+      renderLeads();
+    }).catch(function (e) { toast(e.message, true); });
+  }
+  function renderLeads() {
+    var el = $("leadClientsList"); if (!el) return;
+    el.innerHTML = !leadClients.length
+      ? emptyState("plug", "Nenhum sistema ainda", "Clique em \"+ Novo sistema\" para cadastrar o primeiro CRM.")
+      : leadClients.map(function (c) {
+        var app = appsCache.filter(function (a) { return a.id === c.appKey; })[0];
+        return '<div class="card" style="margin:0"><div class="card-head" style="margin-bottom:.5rem"><div><h2>' + esc(c.name) + '</h2>' +
+          '<div class="desc">App: ' + esc(app ? app.name : c.appKey) + ' · ' + c.pages + ' página(s) · chave ' + esc(c.apiKeyHint) + '</div></div>' +
+          '<button class="btn danger tiny" data-del-lc="' + escAttr(c.id) + '">Remover</button></div>' +
+          '<div class="hint">Entrega em <code>' + esc(c.url) + '</code></div></div>';
+      }).join("");
+    var rl = $("leadRoutesList");
+    if (rl) rl.innerHTML = !leadRoutes.length
+      ? '<div class="hint">Nenhuma página conectada ainda.</div>'
+      : '<div style="display:flex;flex-direction:column;gap:.4rem">' + leadRoutes.map(function (r) {
+        return '<div style="display:flex;justify-content:space-between;gap:.75rem;align-items:center;flex-wrap:wrap;padding:.55rem .7rem;border:1px solid var(--border);border-radius:var(--r-sm)">' +
+          '<span><b>' + esc(r.pageName || r.pageId) + '</b> <span class="hint">' + esc(r.pageId) + '</span></span>' +
+          '<span class="hint">→ ' + esc(r.clientName) + (r.ref ? ' · ' + esc(r.ref) : '') + '</span>' +
+          '<button class="btn ghost tiny" data-del-lr="' + escAttr(r.pageId) + '">Liberar</button></div>';
+      }).join("") + "</div>";
+  }
+  function setupLeads() {
+    var form = $("leadClientForm");
+    $("newLeadClientBtn").addEventListener("click", function () {
+      var sel = $("lcApp");
+      sel.innerHTML = appsCache.map(function (a) { return '<option value="' + escAttr(a.id) + '">' + esc(a.name) + "</option>"; }).join("");
+      hide($("leadClientKey")); show(form); $("lcName").focus();
+    });
+    $("lcCancel").addEventListener("click", function () { hide(form); });
+    $("lcSave").addEventListener("click", function () {
+      api("/api/lead-clients", { method: "POST", body: { name: $("lcName").value, appKey: $("lcApp").value, url: $("lcUrl").value } }).then(function (c) {
+        hide(form); $("lcName").value = ""; $("lcUrl").value = "";
+        var k = $("leadClientKey");
+        k.innerHTML = '<h2>Chave do sistema "' + esc(c.name) + '"</h2><div class="desc">Copie agora: ela não aparece de novo. Coloque no CRM como <code>HUB_LEADS_KEY</code>.</div>' +
+          '<div class="field"><input readonly value="' + escAttr(c.apiKey) + '" onclick="this.select()" /></div>';
+        show(k); loadLeads();
+      }).catch(function (e) { toast(e.message, true); });
+    });
+    $("tab-leads").addEventListener("click", function (ev) {
+      var b = ev.target.closest("[data-del-lc],[data-del-lr]"); if (!b) return;
+      if (b.hasAttribute("data-del-lc")) {
+        if (!confirm("Remover esse sistema? As páginas dele deixam de receber leads por aqui.")) return;
+        api("/api/lead-clients/" + encodeURIComponent(b.getAttribute("data-del-lc")), { method: "DELETE" }).then(loadLeads).catch(function (e) { toast(e.message, true); });
+      } else {
+        if (!confirm("Liberar essa página? Os leads dela voltam a seguir os destinos do app.")) return;
+        api("/api/lead-routes/" + encodeURIComponent(b.getAttribute("data-del-lr")), { method: "DELETE" }).then(loadLeads).catch(function (e) { toast(e.message, true); });
+      }
+    });
+  }
+
   // ── Tabs ───────────────────────────────────────────────────
   function activateTab(tab) {
     Array.prototype.forEach.call(document.querySelectorAll("[data-tab]"), function (b) {
@@ -1008,6 +1067,7 @@
     if (tab === "channels") { loadChannels(); loadApps(); }
     if (tab === "events") { fetchEvents(true); }
     if (tab === "apps") loadApps();
+    if (tab === "leads") { loadApps().then(loadLeads); }
     if (tab === "config") loadConfig();
     if (tab === "guide") fillGuideUrls();
     if (tab === "evidence") evidenceOnShow();
@@ -1202,6 +1262,7 @@
     $("themeBtn").addEventListener("click", toggleTheme);
     $("saveSettings").addEventListener("click", saveSettings);
     $("newAppBtn").addEventListener("click", function () { openAppForm(null); });
+    setupLeads();
     $("connectBtn").addEventListener("click", openConnectDrawer);
     $("cmdkBtn").addEventListener("click", openCmdk);
     var welcomeEnterBtn = $("welcomeEnter"); if (welcomeEnterBtn) welcomeEnterBtn.addEventListener("click", dismissWelcome);

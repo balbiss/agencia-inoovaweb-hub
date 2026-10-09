@@ -159,6 +159,13 @@ export function updateEvent(id: string, patch: Partial<WebhookEvent>): void {
   Object.assign(ev, patch);
   writeJson("events.json", events);
 }
+/** Append pending forward entries to an event (several relays may target the same event). */
+export function addEventForwards(id: string, urls: string[]): void {
+  const ev = events.find((e) => e.id === id);
+  if (!ev) return;
+  ev.forwards = [...(ev.forwards || []), ...urls.map((url) => ({ url, ok: false, status: "pending" as const }))];
+  writeJson("events.json", events);
+}
 /** Update one forward-result entry of an event (used as async relays complete). */
 export function setEventForward(eventId: string, url: string, ok: boolean, status: number | string): void {
   const ev = events.find((e) => e.id === eventId);

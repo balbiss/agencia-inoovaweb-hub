@@ -735,7 +735,7 @@ function relayToApp(appCfg: MetaApp, product: ChannelType | "unknown", rawBody: 
   );
   if (!dests.length) return 0;
   // eventId is null in relay-only mode (no history): we still forward, just skip event bookkeeping.
-  if (eventId) store.updateEvent(eventId, { forwards: dests.map((d) => ({ url: d.url, ok: false, status: "pending" })) });
+  if (eventId) store.addEventForwards(eventId, dests.map((d) => d.url));
   for (const d of dests) {
     setImmediate(async () => {
       const ctrl = new AbortController();
@@ -813,7 +813,7 @@ function ingest(appCfg: MetaApp | null, req: Request): void {
     // Aviso de lead (Lead Ads): vai só pro sistema dono da Página. Página sem dono
     // (ou aviso que não é de lead) segue o repasse normal do app.
     const lead = signatureValid ? leads.entregarLeadgen(resolved.id, body, rawBody, sig, eventId) : { leadgen: false, semDono: false };
-    if (!lead.leadgen || lead.semDono) relayToApp(resolved, parsed.product, rawBody, sig, lead.leadgen ? null : eventId);
+    if (!lead.leadgen || lead.semDono) relayToApp(resolved, parsed.product, rawBody, sig, eventId);
   }
 
   if (WEBHOOK_DEBUG_LOG) {

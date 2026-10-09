@@ -73,7 +73,7 @@ export function entregarLeadgen(appKey: string, body: any, rawBody: string | und
     else semDono = true;
   }
   if (destinos.size && eventId) {
-    store.updateEvent(eventId, { forwards: [...destinos.values()].map((c) => ({ url: c.url, ok: false, status: "pending" })) });
+    store.addEventForwards(eventId, [...destinos.values()].map((c) => c.url));
   }
   for (const c of destinos.values()) {
     setImmediate(async () => {

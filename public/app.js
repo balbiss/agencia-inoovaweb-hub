@@ -992,10 +992,10 @@
   }
 
   // ── Leads (roteamento de Lead Ads por Página) ──────────────
-  var leadClients = [], leadRoutes = [];
+  var leadClients = [], leadRoutes = [], waRoutes = [];
   function loadLeads() {
-    Promise.all([api("/api/lead-clients"), api("/api/lead-routes")]).then(function (r) {
-      leadClients = r[0] || []; leadRoutes = r[1] || [];
+    Promise.all([api("/api/lead-clients"), api("/api/lead-routes"), api("/api/wa-routes")]).then(function (r) {
+      leadClients = r[0] || []; leadRoutes = r[1] || []; waRoutes = r[2] || [];
       setNavCount("navCountLeads", leadClients.length);
       renderLeads();
     }).catch(function (e) { toast(e.message, true); });
@@ -1007,7 +1007,7 @@
       : leadClients.map(function (c) {
         var app = appsCache.filter(function (a) { return a.id === c.appKey; })[0];
         return '<div class="card" style="margin:0"><div class="card-head" style="margin-bottom:.5rem"><div><h2>' + esc(c.name) + '</h2>' +
-          '<div class="desc">App: ' + esc(app ? app.name : c.appKey) + ' · ' + c.pages + ' página(s) · chave ' + esc(c.apiKeyHint) + '</div></div>' +
+          '<div class="desc">App: ' + esc(app ? app.name : c.appKey) + ' · ' + c.pages + ' página(s) · ' + (c.numbers || 0) + ' número(s) · chave ' + esc(c.apiKeyHint) + '</div></div>' +
           '<button class="btn danger tiny" data-del-lc="' + escAttr(c.id) + '">Remover</button></div>' +
           '<div class="hint">Entrega em <code>' + esc(c.url) + '</code></div></div>';
       }).join("");
@@ -1019,6 +1019,15 @@
           '<span><b>' + esc(r.pageName || r.pageId) + '</b> <span class="hint">' + esc(r.pageId) + '</span></span>' +
           '<span class="hint">→ ' + esc(r.clientName) + (r.ref ? ' · ' + esc(r.ref) : '') + '</span>' +
           '<button class="btn ghost tiny" data-del-lr="' + escAttr(r.pageId) + '">Liberar</button></div>';
+      }).join("") + "</div>";
+    var wl = $("waRoutesList");
+    if (wl) wl.innerHTML = !waRoutes.length
+      ? '<div class="hint">Nenhum número conectado ainda.</div>'
+      : '<div style="display:flex;flex-direction:column;gap:.4rem">' + waRoutes.map(function (r) {
+        return '<div style="display:flex;justify-content:space-between;gap:.75rem;align-items:center;flex-wrap:wrap;padding:.55rem .7rem;border:1px solid var(--border);border-radius:var(--r-sm)">' +
+          '<span><b>' + esc(r.displayPhone || r.phoneNumberId) + '</b> <span class="hint">' + esc(r.phoneNumberId) + '</span></span>' +
+          '<span class="hint">→ ' + esc(r.clientName) + (r.ref ? ' · ' + esc(r.ref) : "") + '</span>' +
+          '<button class="btn ghost tiny" data-del-wr="' + escAttr(r.phoneNumberId) + '">Liberar</button></div>';
       }).join("") + "</div>";
   }
   function setupLeads() {
@@ -1039,8 +1048,11 @@
       }).catch(function (e) { toast(e.message, true); });
     });
     $("tab-leads").addEventListener("click", function (ev) {
-      var b = ev.target.closest("[data-del-lc],[data-del-lr]"); if (!b) return;
-      if (b.hasAttribute("data-del-lc")) {
+      var b = ev.target.closest("[data-del-lc],[data-del-lr],[data-del-wr]"); if (!b) return;
+      if (b.hasAttribute("data-del-wr")) {
+        if (!confirm("Liberar esse número? As mensagens dele voltam a seguir os destinos do app.")) return;
+        api("/api/wa-routes/" + encodeURIComponent(b.getAttribute("data-del-wr")), { method: "DELETE" }).then(loadLeads).catch(function (e) { toast(e.message, true); });
+      } else if (b.hasAttribute("data-del-lc")) {
         if (!confirm("Remover esse sistema? As páginas dele deixam de receber leads por aqui.")) return;
         api("/api/lead-clients/" + encodeURIComponent(b.getAttribute("data-del-lc")), { method: "DELETE" }).then(loadLeads).catch(function (e) { toast(e.message, true); });
       } else {

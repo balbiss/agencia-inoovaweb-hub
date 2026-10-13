@@ -812,8 +812,10 @@ function ingest(appCfg: MetaApp | null, req: Request): void {
     const eventId = keepHistory ? ev.id : null;
     // Aviso de lead (Lead Ads): vai só pro sistema dono da Página. Página sem dono
     // (ou aviso que não é de lead) segue o repasse normal do app.
+    // Mesma ideia pro WhatsApp oficial: vai só pro sistema dono do número.
     const lead = signatureValid ? leads.entregarLeadgen(resolved.id, body, rawBody, sig, eventId) : { leadgen: false, semDono: false };
-    if (!lead.leadgen || lead.semDono) relayToApp(resolved, parsed.product, rawBody, sig, eventId);
+    const wa = signatureValid ? leads.entregarWhatsapp(resolved.id, body, rawBody, sig, eventId) : { whatsapp: false, semDono: false };
+    if (!(lead.leadgen || wa.whatsapp) || lead.semDono || wa.semDono) relayToApp(resolved, parsed.product, rawBody, sig, eventId);
   }
 
   if (WEBHOOK_DEBUG_LOG) {
